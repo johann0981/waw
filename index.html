@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ShopIT - Your online fashion destination for clothing, accessories and more">
+  <title>ShopIT - Online Store</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+    
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    
+    /* Layout Styles */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    /* Header Styles */
+    header {
+      background-color: #f8f8f8;
+      padding: 15px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #333;
+    }
+    
+    .search {
+      display: flex;
+      width: 40%;
+    }
+    
+    .search input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px 0 0 4px;
+    }
+    
+    .search-btn {
+      background-color: #333;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 0 4px 4px 0;
+    }
+    
+    .icons button {
+      margin-left: 15px;
+      font-size: 18px;
+    }
+    
+    /* Main Navigation */
+    .main-nav {
+      background-color: #333;
+      color: white;
+    }
+    
+    .main-nav a {
+      display: inline-block;
+      padding: 15px 20px;
+      transition: background-color 0.3s;
+    }
+    
+    .main-nav a:hover {
+      background-color: #555;
+    }
+    
+    /* Banner Section */
+    .banner {
+      position: relative;
+      height: 400px;
+      background: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+      color: white;
+      display: flex;
+      align-items: center;
+    }
+    
+    .banner-filter {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.4);
+    }
+    
+    .banner-text {
+      position: relative;
+      z-index: 1;
+      padding: 0 50px;
+      max-width: 600px;
+    }
+    
+    .banner h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+    
+    .banner p {
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+    
+    .btn-shop {
+      background-color: #ff6b6b;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    
+    .btn-shop:hover {
+      background-color: #ff5252;
+    }
+    
+    /* Categories Section */
+    .cat-section {
+      padding: 60px 0;
+    }
+    
+    .cat-section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 32px;
+    }
+    
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+    
+    .cat-box {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    
+    .cat-box:hover {
+      transform: translateY(-5px);
+    }
+    
+    .cat-img {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .cat-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .cat-box:hover .cat-img img {
+      transform: scale(1.1);
+    }
+    
+    .cat-name {
+      text-align: center;
+      padding: 15px;
+      font-weight: 600;
+    }
+    
+    /* Trending Products */
+    .trending-section {
+      padding: 60px 0;
+      background-color: #f9f9f9;
+    }
+    
+    .trending-section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 32px;
+    }
+    
+    .product-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+    
+    .product {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    
+    .product:hover {
+      transform: translateY(-5px);
+    }
+    
+    .prod-img {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+    }
+    
+    .prod-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .quick-btn {
+      position: absolute;
+      bottom: -40px;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0,0,0,0.7);
+      color: white;
+      padding: 10px;
+      transition: bottom 0.3s;
+    }
+    
+    .product:hover .quick-btn {
+      bottom: 0;
+    }
+    
+    .prod-details {
+      padding: 15px;
+    }
+    
+    .prod-name {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    
+    .prod-price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .curr-price {
+      font-weight: 700;
+      font-size: 18px;
+    }
+    
+    .old-price {
+      text-decoration: line-through;
+      color: #999;
+      margin-left: 8px;
+      font-size: 14px;
+    }
+    
+    .add-cart {
+      background-color: #333;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Newsletter Section */
+    .signup-section {
+      padding: 60px 0;
+      background-color: #333;
+      color: white;
+      text-align: center;
+    }
+    
+    .signup-section h2 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+    
+    .signup-section p {
+      margin-bottom: 25px;
+      font-size: 18px;
+    }
+    
+    .email-form {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .email-form input {
+      flex: 1;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 4px 0 0 4px;
+    }
+    
+    .btn-signup {
+      background-color: #ff6b6b;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 0 4px 4px 0;
+      font-weight: 600;
+    }
+    
+    /* Footer Styles */
+    footer {
+      background-color: #222;
+      color: #ddd;
+      padding: 60px 0 20px;
+    }
+    
+    .footer-wrap {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-col h3 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    
+    .footer-links a {
+      display: block;
+      margin-bottom: 10px;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    .contact-info p {
+      margin-bottom: 10px;
+    }
+    
+    .social {
+      margin-top: 20px;
+    }
+    
+    .social-btn {
+      display: inline-block;
+      margin-right: 10px;
+      width: 30px;
+      height: 30px;
+      background-color: #444;
+      color: white;
+      text-align: center;
+      line-height: 30px;
+      border-radius: 50%;
+    }
+    
+    .legal {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #444;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container flex">
+      <div class="logo">SHopIT</div>
+      <div class="search">
+        <input type="text" placeholder="Search items..." aria-label="Search products">
+        <button type="button" class="search-btn" aria-label="Search">🔍</button>
+      </div>
+      <nav class="icons" aria-label="User actions">
+        <button type="button" class="icon" id="profile" aria-label="User profile">👤</button>
+        <button type="button" class="icon" id="favorites" aria-label="Favorites">❤️</button>
+        <button type="button" class="icon" id="cart" aria-label="Shopping cart">🛒</button>
+      </nav>
+    </div>
+  </header>
+  
+  <nav class="main-nav" aria-label="Main navigation">
+    <div class="container">
+      <a href="new.html">New</a>
+      <a href="women.html">Women</a>
+      <a href="mens.html">Men</a>
+      <a href="#accessories">Accessories</a>
+      <a href="#sale">Sale</a>
+      <a href="#collections">Collections</a>
+    </div>
+  </nav>
+  
+  <main>
+    <section class="banner" aria-label="Summer Collection Promotion">
+      <div class="banner-filter"></div>
+      <div class="banner-text">
+        <h1>Summer Collection 2025</h1>
+        <p>Get up to 50% off selected items. Limited time only.</p>
+        <button type="button" class="btn-shop">Shop Now</button>
+      </div>
+    </section>
+    
+    <section class="cat-section" aria-labelledby="categories-heading">
+      <div class="container">
+        <h2 id="categories-heading">Shop by Category</h2>
+        <div class="cat-grid">
+          <div class="cat-box">
+            <div class="cat-img">
+              <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Women's dresses collection">
+            </div>
+            <p class="cat-name">Dresses</p>
+          </div>
+          <div class="cat-box">
+            <div class="cat-img">
+              <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Women's tops collection">
+            </div>
+            <p class="cat-name">Tops</p>
+          </div>
+          <div class="cat-box">
+            <div class="cat-img">
+              <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Bottoms collection">
+            </div>
+            <p class="cat-name">Bottoms</p>
+          </div>
+          <div class="cat-box">
+            <div class="cat-img">
+              <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Shoes collection">
+            </div>
+            <p class="cat-name">Shoes</p>
+          </div>
+          <div class="cat-box">
+            <div class="cat-img">
+              <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Fashion accessories">
+            </div>
+            <p class="cat-name">Accessories</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="trending-section" aria-labelledby="trending-heading">
+      <div class="container">
+        <h2 id="trending-heading">Trending Now</h2>
+        <div class="product-row">
+          <article class="product">
+            <div class="prod-img">
+              <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Japanese style graphic t-shirt">
+              <button type="button" class="quick-btn">Quick View</button>
+            </div>
+            <div class="prod-details">
+              <h3 class="prod-name">Japanese Graphic T-Shirt</h3>
+              <div class="prod-price">
+                <div>
+                  <span class="curr-price">₱599</span>
+                  <span class="old-price">₱799</span>
+                </div>
+                <button type="button" class="add-cart" aria-label="Add to cart">+</button>
+              </div>
+            </div>
+          </article>
+          <article class="product">
+            <div class="prod-img">
+              <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Casual summer dress">
+              <button type="button" class="quick-btn">Quick View</button>
+            </div>
+            <div class="prod-details">
+              <h3 class="prod-name">Summer Casual Dress</h3>
+              <div class="prod-price">
+                <div>
+                  <span class="curr-price">₱899</span>
+                  <span class="old-price">₱1,199</span>
+                </div>
+                <button type="button" class="add-cart" aria-label="Add to cart">+</button>
+              </div>
+            </div>
+          </article>
+          <article class="product">
+            <div class="prod-img">
+              <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Denim jeans">
+              <button type="button" class="quick-btn">Quick View</button>
+            </div>
+            <div class="prod-details">
+              <h3 class="prod-name">Slim Fit Jeans</h3>
+              <div class="prod-price">
+                <div>
+                  <span class="curr-price">₱1,299</span>
+                  <span class="old-price"></span>
+                </div>
+                <button type="button" class="add-cart" aria-label="Add to cart">+</button>
+              </div>
+            </div>
+          </article>
+          <article class="product">
+            <div class="prod-img">
+              <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Leather crossbody bag">
+              <button type="button" class="quick-btn">Quick View</button>
+            </div>
+            <div class="prod-details">
+              <h3 class="prod-name">Leather Crossbody Bag</h3>
+              <div class="prod-price">
+                <div>
+                  <span class="curr-price">₱1,599</span>
+                  <span class="old-price">₱1,999</span>
+                </div>
+                <button type="button" class="add-cart" aria-label="Add to cart">+</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    
+    <section class="signup-section" aria-labelledby="signup-heading">
+      <div class="container">
+        <h2 id="signup-heading">Get 20% Off Your First Order</h2>
+        <p>Sign up for our newsletter and get exclusive deals!</p>
+        <form class="email-form">
+          <input type="email" placeholder="Your email address" aria-label="Email address" required>
+          <button type="submit" class="btn-signup">Sign Up</button>
+        </form>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <div class="container">
+      <div class="footer-wrap">
+        <div class="footer-col">
+          <h3>Help</h3>
+          <div class="footer-links">
+            <a href="#faq">FAQ</a>
+            <a href="#shipping">Shipping</a>
+            <a href="#returns">Returns</a>
+            <a href="#order">Order Status</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>About</h3>
+          <div class="footer-links">
+            <a href="#about">Our Story</a>
+            <a href="#careers">Careers</a>
+            <a href="#responsibility">Responsibility</a>
+            <a href="#press">Press</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <div class="contact-info">
+            <p>Email: ShopIT@gmail.com</p>
+            <p>Phone: 0012345678</p>
+            <p>Hours: 9AM-6PM Mon-Fri</p>
+          </div>
+          <div class="social">
+            <a href="https://facebook.com" class="social-btn" aria-label="Facebook">FB</a>
+            <a href="https://instagram.com" class="social-btn" aria-label="Instagram">IG</a>
+            <a href="https://twitter.com" class="social-btn" aria-label="Twitter">TW</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Mobile</h3>
+          <div class="footer-links">
+            <a href="#appstore">App Store</a>
+            <a href="#playstore">Google Play</a>
+          </div>
+        </div>
+      </div>
+      <div class="legal">
+        © 2025 ShopIT. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

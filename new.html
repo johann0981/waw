@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopIT - New Arrivals</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+    
+    /* Navigation */
+    nav {
+      background: #333;
+      padding: 15px;
+      text-align: center;
+    }
+    
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    
+    nav a:hover {
+      color: #ff6b6b;
+    }
+    
+    /* Products Section */
+    .product-section {
+      padding: 40px;
+      text-align: center;
+    }
+    
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 30px;
+    }
+    
+    .product-card {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .product-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .product-info {
+      padding: 15px;
+    }
+    
+    .product-info h3 {
+      margin-bottom: 10px;
+    }
+    
+    .price {
+      color: #ff6b6b;
+      font-weight: bold;
+    }
+    
+    /* New Arrivals Tag */
+    .new-tag {
+      background: #ff6b6b;
+      color: white;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    
+    /* Hidden class for filtering */
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="nav-link" data-filter="all">All Products</a>
+    <a href="#" class="nav-link" data-filter="new">New Arrivals</a>
+    <a href="#" class="nav-link" data-filter="women">Women</a>
+    <a href="#" class="nav-link" data-filter="men">Men</a>
+  </nav>
+  <nav class="main-nav" aria-label="Main navigation">
+    <div class="container">
+    <a href="index.html">Home</a>
+      <a href="new.html">New</a>
+      <a href="women.html">Women</a>
+      <a href="mens.html">Men</a>
+      
+      <a href="#accessories">Accessories</a>
+      <a href="#sale">Sale</a>
+      <a href="#collections">Collections</a>
+    </div>
+  </nav>
+
+  <!-- Product Section -->
+  <div class="product-section">
+    <h1>Our Products</h1>
+    
+    <div class="product-grid">
+      <!-- Product 1 - New Arrival -->
+      <div class="product-card" data-category="new women">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1542295669297-4d352b042bca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="New Women's Sneakers">
+        </div>
+        <div class="product-info">
+          <span class="new-tag">New</span>
+          <h3>Women's Running Sneakers</h3>
+          <p class="price">₱1,499</p>
+        </div>
+      </div>
+      
+      <!-- Product 2 - New Arrival -->
+      <div class="product-card" data-category="new men">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="New Men's Watch">
+        </div>
+        <div class="product-info">
+          <span class="new-tag">New</span>
+          <h3>Men's Smart Watch</h3>
+          <p class="price">₱2,999</p>
+        </div>
+      </div>
+      
+      <!-- Product 3 - Regular -->
+      <div class="product-card" data-category="women">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Summer Dress">
+        </div>
+        <div class="product-info">
+          <h3>Summer Floral Dress</h3>
+          <p class="price">₱899</p>
+        </div>
+      </div>
+      
+      <!-- Product 4 - New Arrival -->
+      <div class="product-card" data-category="new women">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="New Women's Bag">
+        </div>
+        <div class="product-info">
+          <span class="new-tag">New</span>
+          <h3>Designer Handbag</h3>
+          <p class="price">₱3,499</p>
+        </div>
+      </div>
+      
+      <!-- Product 5 - Regular -->
+      <div class="product-card" data-category="men">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Men's Shirt">
+        </div>
+        <div class="product-info">
+          <h3>Casual Men's Shirt</h3>
+          <p class="price">₱699</p>
+        </div>
+      </div>
+      
+      <!-- Product 6 - New Arrival -->
+      <div class="product-card" data-category="new men">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="New Men's Jeans">
+        </div>
+        <div class="product-info">
+          <span class="new-tag">New</span>
+          <h3>Slim Fit Jeans</h3>
+          <p class="price">₱1,299</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript for Filtering -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const filter = this.getAttribute('data-filter');
+          filterProducts(filter);
+        });
+      });
+      
+      function filterProducts(category) {
+        const products = document.querySelectorAll('.product-card');
+        
+        products.forEach(product => {
+          if (category === 'all') {
+            product.classList.remove('hidden');
+          } else {
+            if (product.getAttribute('data-category').includes(category)) {
+              product.classList.remove('hidden');
+            } else {
+              product.classList.add('hidden');
+            }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
